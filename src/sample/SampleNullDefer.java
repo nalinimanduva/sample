@@ -9,7 +9,9 @@ import java.io.IOException;
 public class SampleNullDefer {
 
     public static void main(String[] args) {
-  
+          String test = null;
+          test.concat('checking null');
+         system.out.println(' TEST IS NULL ');
     }
 
 }
