@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class SampleFileReader {
 	public static void main(String[] args)  {
+		static final String PASSWORD = "p3n13l";
 		File file = new File("d:/temp/test.text");
 
 			FileReader fr;
