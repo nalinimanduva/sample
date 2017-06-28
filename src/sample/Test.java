@@ -8,11 +8,10 @@ import java.io.IOException;
 
 public class SampleFileReader {
 	static final String PASSWORD = "p3n13l";
-	public static void main(String[] args)  {
-		
+	public static void main(String[] args)  {		
 		File file = new File("d:/temp/test.text");
-
 			FileReader fr;
+		[/-
 			try {
 				fr = new FileReader(file);
 				BufferedReader br =	
