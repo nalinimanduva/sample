@@ -159,7 +159,7 @@ public class AddBatch extends HttpServlet {
                     }
                     if ("cid".equals(k)) {
                         cId = v;
-                        CompanyDAO companyDao = new CompanyDAO();
+                        //                        CompanyDAO companyDao = new CompanyDAO();
                         Vector companyList = new Vector();
                         Company company = new Company();
                         companyList = companyDao.findById(cId);
