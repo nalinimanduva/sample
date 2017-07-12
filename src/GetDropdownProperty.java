@@ -28,7 +28,6 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    // TODO Auto-generated method stub
     }
 
     /* (non-Java-doc)
@@ -39,7 +38,6 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
         System.out.println("Inside GetDropdownProperty");
         String compid = (String) request.getParameter("compid");
         String properties = getPropertyDropDown(compid);
-        //System.out.println("String to be parsed "+index+"$"+doc+"$"+properties);
         (response.getWriter()).write(properties);
     }
 
@@ -48,7 +46,7 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
         String outputstr = "";
         String param = "index_type";
         try {
-            DropDownDAO dropDownDAO = new DropDownDAO();
+            DropDownDAO dropDownDAO = new  DropDownDAO();
             outputstr = dropDownDAO.findByQuery(param, select);
             outputstr = StringUtils.replace(outputstr, "\\\\", "'");
         } catch (Exception e) {
@@ -63,7 +61,7 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
         String outputstr = "";
         String param = "property_id";
         try {
-            DropDownDAO dropDownDAO = new DropDownDAO();
+            DropDownDAO dropDownDAO = new  DropDownDAO();
             outputstr = dropDownDAO.findByQuery(param, select);
             System.out.println("outputstr " + outputstr);
             outputstr = StringUtils.replace(outputstr, "\\\\", "'");
@@ -80,7 +78,7 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
         String outputstr = "";
         String param = "document_type";
         try {
-            DropDownDAO dropDownDAO = new DropDownDAO();
+            DropDownDAO dropDownDAO = new  DropDownDAO();
             outputstr = dropDownDAO.findByQuery(param, select);
             outputstr = StringUtils.replace(outputstr, "\\\\", "'");
         } catch (Exception e) {
@@ -94,7 +92,7 @@ public class GetDropdownProperty extends javax.servlet.http.HttpServlet implemen
         String select = "select document_type from document_type where company_id = '" + compid + "' and document_type_id = '" + docTypeId + "' ";
         String outputstr = "";
         try {
-            DropDownDAO dropDownDAO = new DropDownDAO();
+            DropDownDAO dropDownDAO = new  DropDownDAO();
             outputstr = dropDownDAO.findByQuery("document_type1", select);
             outputstr = StringUtils.replace(outputstr, "\\\\", "'");
         } catch (Exception e) {
