@@ -30,7 +30,7 @@ public class PatymController {
     @ResponseBody
     public Object paytmmobileTestPost(@RequestParam(value = "CHANNEL_ID", required = false) String chnnlId, @RequestParam(value = "MID", required = false) String MID, @RequestParam(value = "CUST_ID", required = false) String custId, @RequestParam(value = "ORDER_ID", required = false) String orderId, @RequestParam(value = "EMAIL", required = false) String email, @RequestParam(value = "TXN_AMOUNT", required = false) String amount, @RequestParam(value = "MOBILE_NO", required = false) String mobile, @RequestParam(value = "THEME", required = false) String theme, @RequestParam(value = "WEBSITE", required = false) String website, @RequestParam(value = "INDUSTRY_TYPE_ID", required = false) String industry, @RequestParam(value = "REQUEST_TYPE", required = false) String REQUEST_TYPE, HttpServletRequest request, HttpServletResponse response) {
         final com.paytm.merchant.CheckSumServiceHelper checkSumServiceHelper = com.paytm.merchant.CheckSumServiceHelper.getCheckSumServiceHelper();
-        final TreeMap<String, String> parameters = new  TreeMap<String, String>();
+        final TreeMap<String, String> parameters = new TreeMap<String, String>();
         // Key provided by Paytm
         final String merchantKey = "p2!6#pZRmImML%BL";
         // Merchant ID (MID) provided by Paytm
@@ -52,27 +52,27 @@ public class PatymController {
         // user's email
         parameters.put("REQUEST_TYPE", REQUEST_TYPE);
         parameters.put("THEME", theme);
-        final JSONObject jo = new  JSONObject();
+        final JSONObject jo = new JSONObject();
         String checksum = null;
-        System.out.println("paytmtranscation>>>>>checking all parameters values...." + "\n merchant:" + merchantKey + "\n MID:" + MID + "\n ordid :" + orderId + "\n custID :" + custId + "\n amount :" + amount + "\n channelId :" + chnnlId + "\n industry :" + industry + "\n website :" + website + "\n mobile :" + mobile + "\n email :" + email + "\n requestType :" + REQUEST_TYPE + "\n theme :" + theme);
+        logger.info("paytmtranscation>>>>>checking all parameters values...." + "\n merchant:" + merchantKey + "\n MID:" + MID + "\n ordid :" + orderId + "\n custID :" + custId + "\n amount :" + amount + "\n channelId :" + chnnlId + "\n industry :" + industry + "\n website :" + website + "\n mobile :" + mobile + "\n email :" + email + "\n requestType :" + REQUEST_TYPE + "\n theme :" + theme);//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
         try {
-            System.out.println(checkSumServiceHelper.genrateCheckSum(merchantKey, parameters));
+            logger.info(checkSumServiceHelper.genrateCheckSum(merchantKey, parameters));//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
             checksum = checkSumServiceHelper.genrateCheckSum(merchantKey, parameters);
             final String ch = checksum.replaceAll("\n", "");
-            System.out.println("CHECKSUMHASH:" + ch);
+            logger.info("CHECKSUMHASH:" + ch);//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
             jo.put("CHECKSUMHASH", ch.replaceAll("\\s+", ""));
             jo.put("payt_STATUS", 1);
             jo.put("ORDER_ID", orderId);
             jo.put("request_params", parameters.toString());
             return jo;
         } catch (final Exception e) {
-            System.out.println("Exception handling something in transaction url");
-            e.printStackTrace();
+            logger.info("Exception handling something in transaction url");//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
+//            e.printStackTrace();  //This Line is commented by Viofixer as a fix for System Information Leak 
         }
         jo.put("CHECKSUMHASH", checksum.replaceAll("\\s+", ""));
         jo.put("payt_STATUS", 2);
         jo.put("ORDER_ID", orderId);
-        System.out.println("parameters are sending fine");
+        logger.info("parameters are sending fine");//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
         // cust.savePaytmTrans(paytm);
         return jo;
     }
@@ -83,7 +83,7 @@ public class PatymController {
     public Object paytmmobileTestPostIos(@RequestParam(value = "CHANNEL_ID", required = false) String chnnlId, @RequestParam(value = "MID", required = false) String MID, @RequestParam(value = "CUST_ID", required = false) String custId, @RequestParam(value = "ORDER_ID", required = false) String orderId, @RequestParam(value = "EMAIL", required = false) String email, @RequestParam(value = "TXN_AMOUNT", required = false) String amount, @RequestParam(value = "MOBILE_NO", required = false) String mobile, @RequestParam(value = "THEME", required = false) String theme, @RequestParam(value = "WEBSITE", required = false) String website, @RequestParam(value = "INDUSTRY_TYPE_ID", required = false) String industry, HttpServletRequest request, HttpServletResponse response) {
         final com.paytm.merchant.CheckSumServiceHelper checkSumServiceHelper = com.paytm.merchant.CheckSumServiceHelper.getCheckSumServiceHelper();
         logger.info("Check Generation from  IOS");
-        final TreeMap<String, String> parameters = new  TreeMap<String, String>();
+        final TreeMap<String, String> parameters = new TreeMap<String, String>();
         // Key provided by Paytm
         final String merchantKey = "p2!6#pZRmImML%BL";
         // Merchant ID (MID) provided by Paytm
@@ -103,11 +103,11 @@ public class PatymController {
         parameters.put("MOBILE_NO", mobile);
         parameters.put("EMAIL", email);
         parameters.put("THEME", theme);
-        final JSONObject jo = new  JSONObject();
+        final JSONObject jo = new JSONObject();
         String checksum = null;
-        System.out.println("paytmtranscationios>>>>>checking all parameters values...." + "merchant" + merchantKey + "MID" + MID + "ordid" + orderId + "custID" + custId + "amount" + amount + "channelId" + chnnlId + "industry" + industry + "website" + website + "mobile" + mobile + "email" + email + "theme" + theme);
+        logger.info("paytmtranscationios>>>>>checking all parameters values...." + "merchant" + merchantKey + "MID" + MID + "ordid" + orderId + "custID" + custId + "amount" + amount + "channelId" + chnnlId + "industry" + industry + "website" + website + "mobile" + mobile + "email" + email + "theme" + theme);//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
         try {
-            System.out.println(checkSumServiceHelper.genrateCheckSum(merchantKey, parameters));
+            logger.info(checkSumServiceHelper.genrateCheckSum(merchantKey, parameters));//This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
             checksum = checkSumServiceHelper.genrateCheckSum(merchantKey, parameters);
             final String ch = checksum.replaceAll("\n", "");
             jo.put("CHECKSUMHASH", ch.replaceAll("\\s+", ""));
@@ -115,7 +115,7 @@ public class PatymController {
             jo.put("ORDER_ID", orderId);
             return jo;
         } catch (final Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();  //This Line is commented by Viofixer as a fix for System Information Leak 
         }
         jo.put("CHECKSUMHASH", checksum.replaceAll("\\s+", ""));
         jo.put("payt_STATUS", 2);
@@ -128,10 +128,11 @@ public class PatymController {
     @RequestMapping(value = "mobile/paytmmobile", method = RequestMethod.POST)
     public String paytmPost(@RequestParam(value = "SUBS_ID", required = false) String subId, @RequestParam(value = "MID", required = false) String MID, @RequestParam(value = "TXNID", required = false) String TXNID, @RequestParam(value = "ORDERID", required = false) String ORDERID, @RequestParam(value = "BANKTXNID", required = false) String BANKTXNID, @RequestParam(value = "TXNAMOUNT", required = false) String TXNAMOUNT, @RequestParam(value = "CURRENCY", required = false) String CURRENCY, @RequestParam(value = "STATUS", required = false) String STATUS, @RequestParam(value = "RESPCODE", required = false) String RESPCODE, @RequestParam(value = "RESPMSG", required = false) String RESPMSG, @RequestParam(value = "TXNDATE", required = false) String TXNDATE, @RequestParam(value = "GATEWAYNAME", required = false) String GATEWAYNAME, @RequestParam(value = "BANKNAME", required = false) String BANKNAME, @RequestParam(value = "PAYMENTMODE", required = false) String PAYMENTMODE, @RequestParam(value = "PROMO_CAMP_ID", required = false) String PROMO_CAMP_ID, @RequestParam(value = "PROMO_STATUS", required = false) String PROMO_STATUS, @RequestParam(value = "PROMO_RESPCODE", required = false) String PROMO_RESPCODE, @RequestParam(value = "CHECKSUMHASH", required = false) String CHECKSUMHASH, HashMap<Object, Object> model, HttpServletRequest request) throws Exception {
         logger.info("Check sum verification is Working Calling by Paytm");
-        System.out.println("paytmmobile>>>>>checking all parameters values....  " + "subId:  " + subId + "--------MID:  " + MID + "--------txnid:  " + TXNID + "--------ordid: " + ORDERID + "--------BANKTXNID: " + BANKTXNID + "--------TXNAMOUNT:  " + TXNAMOUNT + "--------CURRENCY: " + CURRENCY + "--------STATUS: " + STATUS + "--------RESPCODE: " + RESPCODE + "--------RESPMSG: " + RESPMSG + "--------TXNDATE: " + TXNDATE + "--------GATEWAYNAME: " + GATEWAYNAME + "--------BANKNAME: " + BANKNAME + "--------PAYMENTMODE: " + PAYMENTMODE + "--------PROMO_CAMP_ID: " + PROMO_CAMP_ID + "--------PROMO_STATUS: " + PROMO_STATUS + "--------PROMO_RESPCODE: " + PROMO_RESPCODE + "--------CHECKSUMHASH: " + CHECKSUMHASH);
+        //This Line is modified by Viofixer as a fix for Poor Logging Practice Use of a System Output Stream 
+        logger.info("paytmmobile>>>>>checking all parameters values....  " + "subId:  " + subId + "--------MID:  " + MID + "--------txnid:  " + TXNID + "--------ordid: " + ORDERID + "--------BANKTXNID: " + BANKTXNID + "--------TXNAMOUNT:  " + TXNAMOUNT + "--------CURRENCY: " + CURRENCY + "--------STATUS: " + STATUS + "--------RESPCODE: " + RESPCODE + "--------RESPMSG: " + RESPMSG + "--------TXNDATE: " + TXNDATE + "--------GATEWAYNAME: " + GATEWAYNAME + "--------BANKNAME: " + BANKNAME + "--------PAYMENTMODE: " + PAYMENTMODE + "--------PROMO_CAMP_ID: " + PROMO_CAMP_ID + "--------PROMO_STATUS: " + PROMO_STATUS + "--------PROMO_RESPCODE: " + PROMO_RESPCODE + "--------CHECKSUMHASH: " + CHECKSUMHASH);
         boolean isValidChecksum = false;
         final String merchantkey = "p2!6#pZRmImML%BL";
-        final PaytmTrans paytm = new  PaytmTrans();
+        final PaytmTrans paytm = new PaytmTrans();
         paytm.setSubscribtionId(subId);
         paytm.setMerchantId(MID);
         paytm.setTranscationId(TXNID);
@@ -152,7 +153,7 @@ public class PatymController {
         paytm.setChecksum(CHECKSUMHASH);
         //cust.savePaytmTrans(paytm);
         final com.paytm.merchant.CheckSumServiceHelper checkSumServiceHelper = com.paytm.merchant.CheckSumServiceHelper.getCheckSumServiceHelper();
-        final TreeMap<String, String> parameters = new  TreeMap<String, String>();
+        final TreeMap<String, String> parameters = new TreeMap<String, String>();
         // Merchant ID (MID) sent by Paytm pg
         parameters.put("MID", MID);
         // Merchant�s order id
@@ -185,7 +186,7 @@ public class PatymController {
                 logger.info("Request Parameter Value" + paramValue);
             }
         }
-        final JSONObject jo = new  JSONObject();
+        final JSONObject jo = new JSONObject();
         try {
             logger.info("Check sum verification is Working");
             isValidChecksum = checkSumServiceHelper.verifycheckSum(merchantkey, parameters, CHECKSUMHASH);
